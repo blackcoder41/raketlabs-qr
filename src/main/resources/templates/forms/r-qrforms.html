@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: header(title = ~{::title}, scripts = ~{::script})">
+    <title>Raket Labs - QR</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div th:replace="base :: #raketlabs-logo"></div>
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">Account Name</th>
+                <th scope="col">Account Number</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">City</th>
+            </thead>
+            <tbody>
+                <tr th:each="qrForm : ${qrFormList}">
+                    <td th:text="${qrForm.id}"></td>
+                    <td th:text="${qrForm.accountName}"></td>
+                    <td th:text="${qrForm.accountNumber}"></td>
+                    <td th:text="${qrForm.mobileNumber}"></td>
+                    <td th:text="${qrForm.city}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+    </div> <!-- #wrapper -->
+</body>
+</html>
