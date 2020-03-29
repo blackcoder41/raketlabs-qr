@@ -26,6 +26,7 @@ public class QRSecurityConfig extends SecurityConfig  {
         http.authorizeRequests().antMatchers("/generate/qr/**").permitAll();
         http.authorizeRequests().antMatchers("/barcodes/generate").permitAll();
         http.authorizeRequests().antMatchers("/barcodes/qrgen/qrcode").permitAll();
+        http.authorizeRequests().antMatchers("/qr/*.png").permitAll();
     }
 
 	
