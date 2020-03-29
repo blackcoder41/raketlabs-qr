@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: header(title = ~{::title}, scripts = ~{::script})">
+    <title>Raket Labs - QR</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div th:replace="base :: #raketlabs-logo"></div>
+
+        <div class="alert alert-success" role="alert" th:if="${success}" th:text="${success}"></div>
+        <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
+
+        <div id="login-panel" class="card panel-s">
+            <div class="card-body">
+                <form th:action="@{/barcodes/qrgen/qrcode}" method="post" target="_blank">
+                    <div class="form-group">
+                        <label for="bardcode">Barcode</label>
+                        <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter barcode data" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="generateQR" class="form-check-label invisible">Generate QR</label>
+                        <button type="submit" class="btn btn-primary btn-block" name="generateQR">Generate QR</button>
+                    </div>
+    
+                </form>
+            </div>
+        </div>
+
+    </div> <!-- #wrapper -->
+</body>
+</html>

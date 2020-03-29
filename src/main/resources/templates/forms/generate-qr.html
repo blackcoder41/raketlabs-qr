@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: header(styles=~{::style}, scripts=~{::script})">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+
+        }
+    </style>
+
+    <script th:src="@{/js/qrcode.min.js}"></script>
+    <script th:src="@{/js/main.js}" th:inline="javascript"></script>
+	<script th:inline="javascript">
+	   var username = /*[[@{/qr/generate}]]*/ "Gertrud Kiwifruit";
+	</script>
+</head>
+<body>
+    <div id="wrapper">
+        <div th:replace="base :: #raketlabs-logo"></div>
+        <div class="card panel-s">
+            <div class="card-body">
+            
+                <div id="qr-png-container">
+                    <div id="qr-png" class="hidden"></div>
+                </div>
+                
+                <div id="qr-svg-container">
+	                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	                    <g id="qr-svg" />
+	                </svg>
+                </div>
+                
+                <div style="height:20px;"></div>
+                <div class="card hidden">
+                    <div class="card-body">
+                        <div id="qr-data" th:text="${qr.stringData}"></div>
+                    </div>
+                </div>
+                <div style="height:20px;"></div>
+                <button type="submit" id="download" class="btn btn-primary btn-block">Download</button>
+            </div>
+        </div>
+        <div style="height:20px;"></div>
+    </div> <!-- #wrapper -->
+    
+    
+    
+    <form th:action="@{/barcodes/qrgen/qrcode}" method="post" id="qr-form" class="hidden" target="_blank">
+        <input type="text" id="barcode" name="barcode" th:value="${qr.stringData}">
+    </form>
+</body>
+</html>
