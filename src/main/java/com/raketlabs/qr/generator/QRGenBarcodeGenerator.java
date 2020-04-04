@@ -1,7 +1,5 @@
 package com.raketlabs.qr.generator;
 
-import static org.junit.Assert.assertThat;
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,6 +9,7 @@ import java.nio.file.StandardCopyOption;
 
 import javax.imageio.ImageIO;
 
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import net.glxn.qrgen.javase.QRCode;
@@ -21,6 +20,7 @@ public class QRGenBarcodeGenerator {
         ByteArrayOutputStream stream = QRCode
                 .from(barcodeText)
                 .withSize(300, 300)
+                .withHint(EncodeHintType.MARGIN, 0)
                 .withErrorCorrection(ErrorCorrectionLevel.H)
                 .stream();
         ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
@@ -34,6 +34,7 @@ public class QRGenBarcodeGenerator {
         File qrFile = QRCode
             .from(barcodeText)
             .withSize(300, 300)
+            .withHint(EncodeHintType.MARGIN, 0)
             .withErrorCorrection(ErrorCorrectionLevel.H)
             .file();
         
